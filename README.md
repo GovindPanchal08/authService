@@ -54,6 +54,5 @@ A complete authentication service built with Node.js and Express.js, featuring s
 
 ```bash
 git clone https://github.com/yourusername/auth-service.git
-cd auth-service
 npm install
 npm run dev
