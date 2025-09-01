@@ -115,14 +115,17 @@ Register → Verify Email → Login → Issue Tokens → Access Protected Routes
 
 ---
 
-## 📜 Example Usage
 
-### 🔑 Register User
+## 📡 API Documentation
+
+### 1. 🔑 Register User
 
 ```http
 POST /api/auth/register
 Content-Type: application/json
 ```
+
+**Request Body:**
 
 ```json
 {
@@ -132,82 +135,100 @@ Content-Type: application/json
 }
 ```
 
-✅ Response: `201 Created` – Verification email sent.
+**Responses:**
 
-Responses:
+* `201 Created` – User created successfully
+* `400 Bad Request` – Email already exists
 
-201 Created – User created successfully
+---
 
-400 Bad Request – Email already exists
+### 2. 🔐 Sign In
 
-2. Sign In
+```http
+POST /api/auth/login
+Content-Type: application/json
+```
 
-POST /signin
+**Request Body:**
 
-Description: Authenticate user and return access/refresh tokens.
-Request Body:
-
+```json
 {
   "email": "john@example.com",
   "password": "SecurePass123"
 }
+```
 
+**Responses:**
 
-Responses:
+* `200 OK` – Returns access & refresh tokens
+* `401 Unauthorized` – Invalid credentials
 
-200 OK – Returns tokens
+---
 
-401 Unauthorized – Invalid credentials
+### 3. ♻️ Refresh Token
 
-3. Refresh Token
+```http
+POST /api/auth/refresh-token
+Content-Type: application/json
+```
 
-POST /refresh-token
+**Request Body:**
 
-Description: Get a new access token using refresh token.
-Request Body:
-
+```json
 {
   "refreshToken": "your_refresh_token"
 }
+```
 
+**Responses:**
 
-Responses:
+* `200 OK` – Returns new access token
+* `403 Forbidden` – Invalid or expired refresh token
 
-200 OK – Returns new access token
+---
 
-403 Forbidden – Invalid or expired refresh token
+### 4. 🚪 Logout
 
-4. Logout
+```http
+POST /api/auth/logout
+```
 
-POST /logout
+**Description:** Invalidate the refresh token to log out the user.
 
-Description: Invalidate the refresh token to log out the user.
+**Responses:**
 
-Responses:
+* `200 OK` – Logged out successfully
 
-200 OK – Logged out successfully
+---
 
-5. Google OAuth
+### 5. 🌐 Google OAuth
 
-GET /google
+```http
+GET /api/auth/google
+```
 
-Description: Redirects to Google for authentication.
+**Description:** Redirects to Google for authentication.
 
-Responses:
+**Responses:**
 
-302 Found – Redirect to Google login page
+* `302 Found` – Redirect to Google login page
 
-6. Verify Email
+---
 
-GET /verify-email/:id
+### 6. 📧 Verify Email
 
-Description: Verify a user’s email using a unique link sent via email.
+```http
+GET /api/auth/verify-email/:id
+```
 
-Responses:
+**Description:** Verify a user’s email using a unique link sent via email.
 
-200 OK – Email verified successfully
+**Responses:**
 
-400 Bad Request – Invalid/expired link
+* `200 OK` – Email verified successfully
+* `400 Bad Request` – Invalid or expired link
+
+---
 ---
 
 ## 🤝 Contribution
