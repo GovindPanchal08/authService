@@ -121,7 +121,7 @@ Register → Verify Email → Login → Issue Tokens → Access Protected Routes
 ### 1. 🔑 Register User
 
 ```http
-POST /api/auth/register
+POST /api/v1/auth/register
 Content-Type: application/json
 ```
 
@@ -145,7 +145,7 @@ Content-Type: application/json
 ### 2. 🔐 Sign In
 
 ```http
-POST /api/auth/login
+POST /api/v1/auth/login
 Content-Type: application/json
 ```
 
@@ -168,7 +168,7 @@ Content-Type: application/json
 ### 3. ♻️ Refresh Token
 
 ```http
-POST /api/auth/refresh-token
+POST /api/v1/auth/refresh-token
 Content-Type: application/json
 ```
 
@@ -190,7 +190,7 @@ Content-Type: application/json
 ### 4. 🚪 Logout
 
 ```http
-POST /api/auth/logout
+POST /api/v1/auth/logout
 ```
 
 **Description:** Invalidate the refresh token to log out the user.
@@ -204,7 +204,7 @@ POST /api/auth/logout
 ### 5. 🌐 Google OAuth
 
 ```http
-GET /api/auth/google
+GET /api/v1/auth/google
 ```
 
 **Description:** Redirects to Google for authentication.
@@ -218,7 +218,7 @@ GET /api/auth/google
 ### 6. 📧 Verify Email
 
 ```http
-GET /api/auth/verify-email/:id
+GET /api/v1/auth/verify-email/:id
 ```
 
 **Description:** Verify a user’s email using a unique link sent via email.
