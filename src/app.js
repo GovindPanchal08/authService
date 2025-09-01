@@ -51,10 +51,20 @@ app.use((err, req, res, next) => {
   }
   next();
 });
-app.use(errorMiddleware);
 app.use(rateLimiteMiddleware);
 app.get("/", (req, res) => {
   res.send("Heyy This Is Auth Folder");
 });
 app.use("/api/v1/auth", authRoute);
+app.use((req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: "Route Not Found",
+    error: {
+      statusCode: 404,
+    },
+  });
+});
+app.use(errorMiddleware);
+
 module.exports = app;
